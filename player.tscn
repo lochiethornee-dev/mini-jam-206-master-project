@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://28sdx5d1be4p"]
+
+[ext_resource type="Script" uid="uid://blx8t3japwi8m" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://dibhh3f02hj5r" path="res://icon.svg" id="2_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+size = Vector2(128, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(115, 116)
+
+[node name="player" type="CharacterBody2D" unique_id=1784760530]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2095422395]
+texture = ExtResource("2_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1505880075]
+position = Vector2(0, 56)
+shape = SubResource("RectangleShape2D_hqtel")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1760715995]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1164477690]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_onrkg")
+debug_color = Color(0.94513017, 0.2365695, 0, 0.41960785)
