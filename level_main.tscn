@@ -1,6 +1,69 @@
 [gd_scene format=3 uid="uid://bk3hq0vluwa42"]
 
 [ext_resource type="PackedScene" uid="uid://28sdx5d1be4p" path="res://player.tscn" id="1_1rrhw"]
+[ext_resource type="Texture2D" uid="uid://dxa4jtiya5ex3" path="res://ARTS!/Test background.png" id="2_msnib"]
+
+[sub_resource type="Animation" id="Animation_dw44o"]
+resource_name = "Background cycle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 324), Vector2(-576, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1728, 324), Vector2(576, 324)]
+}
+
+[sub_resource type="Animation" id="Animation_i3xgx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1728, 324)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17q82"]
+_data = {
+&"Background cycle": SubResource("Animation_dw44o"),
+&"RESET": SubResource("Animation_i3xgx")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rd2yn"]
 size = Vector2(30, 659)
@@ -9,6 +72,21 @@ size = Vector2(30, 659)
 size = Vector2(30, 1159.5)
 
 [node name="levelMain" type="Node2D" unique_id=552496253]
+
+[node name="Background" type="Node2D" parent="." unique_id=1616320521]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=2083262412]
+position = Vector2(576, 324)
+texture = ExtResource("2_msnib")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=783094067]
+position = Vector2(1728, 324)
+texture = ExtResource("2_msnib")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background" unique_id=557719964]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_17q82")
+autoplay = &"Background cycle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1577265572]
 
