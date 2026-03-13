@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://28sdx5d1be4p" path="res://player.tscn" id="1_1rrhw"]
 [ext_resource type="Texture2D" uid="uid://dxa4jtiya5ex3" path="res://ARTS!/Test background.png" id="2_msnib"]
+[ext_resource type="PackedScene" uid="uid://qk3arv64lu66" path="res://cactusenemy.tscn" id="3_dw44o"]
 
 [sub_resource type="Animation" id="Animation_dw44o"]
 resource_name = "Background cycle"
@@ -110,3 +111,6 @@ shape = SubResource("RectangleShape2D_1rrhw")
 
 [node name="player" parent="." unique_id=1784760530 instance=ExtResource("1_1rrhw")]
 position = Vector2(190, 371)
+
+[node name="cactusenemy" parent="." unique_id=555866084 instance=ExtResource("3_dw44o")]
+position = Vector2(1009, 325)

@@ -1,0 +1,250 @@
+[gd_scene format=3 uid="uid://71qmmm7c8bf7"]
+
+[ext_resource type="Script" uid="uid://dj4ia3rhs7cpe" path="res://intro.gd" id="1_0a7ni"]
+[ext_resource type="Texture2D" uid="uid://dbbr70ip8mqc1" path="res://ARTS!/TITLE SCREEN.png" id="1_7a8ye"]
+[ext_resource type="Texture2D" uid="uid://c4dc0n6dbqv8v" path="res://ARTS!/intro background.png" id="1_ayt76"]
+[ext_resource type="Texture2D" uid="uid://bljexljq67pgl" path="res://ARTS!/intro text.png" id="2_7a8ye"]
+[ext_resource type="FontFile" uid="uid://dfonbs8pvc4yt" path="res://ARTS!/BroncoPersonalUse.ttf" id="3_y72e6"]
+
+[sub_resource type="Animation" id="Animation_0a7ni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(633, 547)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("text:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(649, 378)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("text:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Button:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Button:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("text:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y72e6"]
+resource_name = "intro"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.49, 1.5, 2.99, 3, 4.4996324, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(633, 547), Vector2(633, 547), Vector2(616, 644), Vector2(616, 644), Vector2(628, 751), Vector2(628, 751), Vector2(574, -143)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("text:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.4996324, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(649, 378), Vector2(649, 378), Vector2(576, 157)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("text:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7.523333, 7.5333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.523333, 7.5333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7.523333, 7.5333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Button:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 7.523333, 7.5333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Button:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 7.523263, 7.5332627),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("text:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(5.954986, 7.522379),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2rf6"]
+_data = {
+&"RESET": SubResource("Animation_0a7ni"),
+&"intro": SubResource("Animation_y72e6")
+}
+
+[node name="Intro" type="Node2D" unique_id=326115977]
+script = ExtResource("1_0a7ni")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=493215350]
+position = Vector2(576, 324)
+texture = ExtResource("1_7a8ye")
+
+[node name="Button" type="Button" parent="." unique_id=977205601]
+visible = false
+offset_left = 429.0
+offset_top = 383.0
+offset_right = 729.0
+offset_bottom = 483.0
+theme_override_colors/font_color = Color(0.82930106, 0.9430994, 7.70092e-07, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_y72e6")
+theme_override_font_sizes/font_size = 40
+disabled = true
+text = "PLAY"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1814936149]
+position = Vector2(576, 324)
+texture = ExtResource("1_ayt76")
+
+[node name="text" type="Sprite2D" parent="." unique_id=1292718097]
+position = Vector2(649, 378)
+texture = ExtResource("2_7a8ye")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1638209927]
+position = Vector2(633, 547)
+texture = ExtResource("1_ayt76")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1552511244]
+libraries/ = SubResource("AnimationLibrary_u2rf6")
+autoplay = &"intro"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

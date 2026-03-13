@@ -25,3 +25,7 @@ shape = SubResource("RectangleShape2D_hqtel")
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_onrkg")
 debug_color = Color(0.94513017, 0.2365695, 0, 0.41960785)
+
+[node name="cooldown" type="Timer" parent="." unique_id=761061859]
+unique_name_in_owner = true
+one_shot = true

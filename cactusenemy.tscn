@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://qk3arv64lu66"]
+
+[ext_resource type="Script" uid="uid://cxm1ukswmrhhd" path="res://cactusenemy.gd" id="1_ah4h6"]
+[ext_resource type="Texture2D" uid="uid://dibhh3f02hj5r" path="res://icon.svg" id="2_qxrag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7sr3"]
+size = Vector2(62, 62)
+
+[node name="cactusenemy" type="CharacterBody2D" unique_id=1067798046]
+script = ExtResource("1_ah4h6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1063988357]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_qxrag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1800179964]
+shape = SubResource("RectangleShape2D_l7sr3")
