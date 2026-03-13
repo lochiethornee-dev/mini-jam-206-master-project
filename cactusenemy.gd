@@ -16,3 +16,11 @@ func take_damage():
 
 	else:
 		health -= 1
+		%Sprite2D.modulate = Color(0.788, 0.796, 0.639, 1.0)
+		await get_tree().create_timer(.1).timeout
+		%Sprite2D.modulate = Color(1,1,1)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_method("damaged"):
+		body.damaged()

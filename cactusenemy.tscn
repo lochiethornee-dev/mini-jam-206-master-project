@@ -4,14 +4,26 @@
 [ext_resource type="Texture2D" uid="uid://dibhh3f02hj5r" path="res://icon.svg" id="2_qxrag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7sr3"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah4h6"]
 size = Vector2(62, 62)
 
 [node name="cactusenemy" type="CharacterBody2D" unique_id=1067798046]
 script = ExtResource("1_ah4h6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1063988357]
+unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_qxrag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1800179964]
 shape = SubResource("RectangleShape2D_l7sr3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=945539327]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1225195819]
+shape = SubResource("RectangleShape2D_ah4h6")
+debug_color = Color(0.9016974, 0.310455, 3.85046e-07, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
