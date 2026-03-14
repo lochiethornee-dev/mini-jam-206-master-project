@@ -1,22 +1,77 @@
 [gd_scene format=3 uid="uid://28sdx5d1be4p"]
 
 [ext_resource type="Script" uid="uid://blx8t3japwi8m" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://dibhh3f02hj5r" path="res://icon.svg" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://2hm7or7wud4w" path="res://ARTS!/COWHORSE AND HOSE BOY/CowHorse Run 2.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://75nbayhxjswh" path="res://ARTS!/COWHORSE AND HOSE BOY/CowHorse Run 4.png" id="3_hqtel"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(128, 127)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
+radius = 22.5
+height = 80.0
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+resource_name = "MOVING WEO"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_i3pqv"), ExtResource("3_hqtel")]
+}
+
+[sub_resource type="Animation" id="Animation_2hs0m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_i3pqv")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1jxqw"]
+_data = {
+&"MOVING WEO": SubResource("Animation_sweqy"),
+&"RESET": SubResource("Animation_2hs0m")
+}
 
 [node name="player" type="CharacterBody2D" unique_id=1784760530]
+collision_mask = 5
+motion_mode = 1
+wall_min_slide_angle = 0.0
+platform_on_leave = 2
+platform_floor_layers = 0
+platform_wall_layers = 1
 script = ExtResource("1_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2095422395]
 unique_name_in_owner = true
+texture_filter = 1
+scale = Vector2(-0.5, 0.5)
 texture = ExtResource("2_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1505880075]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_hqtel")
+shape = SubResource("CapsuleShape2D_i3pqv")
 
 [node name="cooldown" type="Timer" parent="." unique_id=761061859]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=752428048]
+libraries/ = SubResource("AnimationLibrary_1jxqw")
+autoplay = &"MOVING WEO"
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1717921664]
+unique_name_in_owner = true
+position = Vector2(58, -16)

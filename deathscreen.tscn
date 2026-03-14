@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://csa0scxuefs7h"]
+
+[ext_resource type="Script" uid="uid://cmxp8mox5wj3y" path="res://deathscreen.gd" id="1_0ajwu"]
+[ext_resource type="Texture2D" uid="uid://c4dc0n6dbqv8v" path="res://ARTS!/intro background.png" id="2_tnnxq"]
+[ext_resource type="FontFile" uid="uid://dfonbs8pvc4yt" path="res://ARTS!/BroncoPersonalUse.ttf" id="3_elkug"]
+
+[node name="deathscreen" type="Node2D" unique_id=702363754]
+script = ExtResource("1_0ajwu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1246769778]
+position = Vector2(576, 324)
+texture = ExtResource("2_tnnxq")
+
+[node name="Label" type="Label" parent="." unique_id=390686159]
+offset_left = 26.0
+offset_top = 40.0
+offset_right = 1347.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("3_elkug")
+theme_override_font_sizes/font_size = 100
+text = "YOU FRICKIN DIED DOOD C'MON MAN"
+
+[node name="score" type="Label" parent="." unique_id=1989760171]
+unique_name_in_owner = true
+offset_left = 46.0
+offset_top = 189.0
+offset_right = 1367.0
+offset_bottom = 318.0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("3_elkug")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+
+[node name="score2" type="Label" parent="." unique_id=76491607]
+unique_name_in_owner = true
+offset_left = 46.0
+offset_top = 323.0
+offset_right = 1367.0
+offset_bottom = 452.0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("3_elkug")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1997308096]
+offset_left = 428.0
+offset_top = 477.0
+offset_right = 728.0
+offset_bottom = 577.0
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_hover_color = Color(0.8862745, 0.42745098, 0.36078432, 1)
+theme_override_fonts/font = ExtResource("3_elkug")
+theme_override_font_sizes/font_size = 40
+text = "PLAY again?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

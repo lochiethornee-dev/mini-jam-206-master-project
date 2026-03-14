@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://clk7xrn82lvrk"]
+
+[ext_resource type="Script" uid="uid://chw3j6ar0g7a" path="res://alienbulletbasic.gd" id="1_kpgrw"]
+[ext_resource type="Texture2D" uid="uid://djx1bwvdjvssd" path="res://ARTS!/enemys and obstavles/alien shooter/Alien Bullet.png" id="2_kpgrw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kpgrw"]
+radius = 3.9999998
+height = 15.999999
+
+[node name="alienbulletbasic" type="Node2D" unique_id=1566183807]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_kpgrw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1465774378]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("2_kpgrw")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1160222779]
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1364820247]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_kpgrw")
+
+[node name="Timer" type="Timer" parent="." unique_id=1287659086]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

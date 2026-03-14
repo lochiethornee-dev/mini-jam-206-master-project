@@ -10,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x += speed * delta
+	position.x += -speed * delta
 
 
 func _on_timer_timeout() -> void:
@@ -18,6 +18,6 @@ func _on_timer_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_method("take_damage"):
-		body.take_damage()
+	if body.has_method("damaged"):
+		body.damaged(1)
 		queue_free()

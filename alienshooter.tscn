@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://fc81sxwy8htu"]
+
+[ext_resource type="Texture2D" uid="uid://b04jun40tk6oh" path="res://ARTS!/enemys and obstavles/alien shooter/Alien 1.png" id="1_7aax2"]
+[ext_resource type="Script" uid="uid://c4opnu2xum28d" path="res://alienshooter.gd" id="1_y5ghm"]
+[ext_resource type="Texture2D" uid="uid://cayp7iryojrrs" path="res://ARTS!/enemys and obstavles/alien shooter/Alien 2.png" id="2_y5ghm"]
+
+[sub_resource type="Animation" id="Animation_xwt3i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7aax2")]
+}
+
+[sub_resource type="Animation" id="Animation_aqtl0"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_7aax2"), ExtResource("2_y5ghm"), ExtResource("1_7aax2")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_deoss"]
+_data = {
+&"RESET": SubResource("Animation_xwt3i"),
+&"walk": SubResource("Animation_aqtl0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hdvb"]
+size = Vector2(130, 222)
+
+[sub_resource type="Animation" id="Animation_y5ghm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1040.0]
+}
+
+[sub_resource type="Animation" id="Animation_deoss"]
+resource_name = "instantiate"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1260.0, 1000.0, 1000.0, 1260.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hdvb"]
+_data = {
+&"RESET": SubResource("Animation_y5ghm"),
+&"instantiate": SubResource("Animation_deoss")
+}
+
+[node name="alienshooter" type="CharacterBody2D" unique_id=360884996]
+position = Vector2(1040, 0)
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_y5ghm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1117573008]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("1_7aax2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1631811573]
+libraries/ = SubResource("AnimationLibrary_deoss")
+autoplay = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=440462701]
+visible = false
+position = Vector2(25, 5)
+shape = SubResource("RectangleShape2D_2hdvb")
+
+[node name="Marker1" type="Marker2D" parent="." unique_id=319478568]
+unique_name_in_owner = true
+position = Vector2(-102, 46)
+
+[node name="Marker2" type="Marker2D" parent="." unique_id=265271336]
+unique_name_in_owner = true
+position = Vector2(-28, 30)
+
+[node name="cooldown" type="Timer" parent="." unique_id=169748228]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="movement" type="AnimationPlayer" parent="." unique_id=198835775]
+libraries/ = SubResource("AnimationLibrary_2hdvb")
+autoplay = &"instantiate"

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://doqpjx3m8cew5"]
+
+[ext_resource type="Script" uid="uid://dsbq1xgqrc0hg" path="res://cactusobstacle.gd" id="1_jgtjc"]
+[ext_resource type="Texture2D" uid="uid://x1pxdtnk0m5a" path="res://ARTS!/enemys and obstavles/Cactus 1.png" id="2_jgtjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgtjc"]
+size = Vector2(55, 7.499995)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_by68r"]
+size = Vector2(57, 9.999992)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1808982558]
+disable_mode = 1
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_jgtjc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1296530747]
+texture_filter = 1
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_jgtjc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=497441773]
+position = Vector2(-0.5, -1)
+scale = Vector2(1, 0.80000055)
+shape = SubResource("RectangleShape2D_jgtjc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1323489569]
+position = Vector2(0, 13)
+scale = Vector2(1, 0.80000055)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1832946852]
+position = Vector2(-0.5, -17.499987)
+shape = SubResource("RectangleShape2D_by68r")
+debug_color = Color(0.9489556, 0.22847798, 1.92523e-07, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
