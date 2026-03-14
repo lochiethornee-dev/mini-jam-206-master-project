@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cx0yfv4nw5qrk"]
 
 [ext_resource type="Script" uid="uid://bb18yqpx1066u" path="res://aliendog.gd" id="1_nuhfd"]
-[ext_resource type="Texture2D" uid="uid://defkfcwos0i0v" path="res://ARTS!/placeholder.png" id="2_ntyaj"]
+[ext_resource type="Texture2D" uid="uid://rqcl3dn3nds8" path="res://ARTS!/enemys and obstavles/EL GOBLANO/Goblin Run 1.png" id="2_mhj5i"]
+[ext_resource type="Texture2D" uid="uid://beqadfg3s38wa" path="res://ARTS!/enemys and obstavles/EL GOBLANO/Goblin Run 2.png" id="3_23j8t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ntyaj"]
 radius = 128.09763
@@ -9,14 +10,105 @@ radius = 128.09763
 [sub_resource type="CircleShape2D" id="CircleShape2D_mhj5i"]
 radius = 129.0
 
-[node name="aliendog" type="StaticBody2D" unique_id=1071900331]
-collision_layer = 6
-collision_mask = 5
+[sub_resource type="Animation" id="Animation_wt6xm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_mhj5i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1185.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mhj5i"]
+resource_name = "motion"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-50.0, 50.0, -50.0]
+}
+
+[sub_resource type="Animation" id="Animation_oribj"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_mhj5i"), ExtResource("3_23j8t"), ExtResource("2_mhj5i")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qalbg"]
+_data = {
+&"RESET": SubResource("Animation_wt6xm"),
+&"motion": SubResource("Animation_mhj5i"),
+&"run": SubResource("Animation_oribj")
+}
+
+[node name="aliendog" type="StaticBody2D" unique_id=1754640205]
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_nuhfd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=148985774]
 unique_name_in_owner = true
-texture = ExtResource("2_ntyaj")
+texture = ExtResource("2_mhj5i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809513551]
 shape = SubResource("CircleShape2D_ntyaj")
@@ -27,4 +119,12 @@ shape = SubResource("CircleShape2D_ntyaj")
 shape = SubResource("CircleShape2D_mhj5i")
 debug_color = Color(0.94142914, 0.24407408, 1.92523e-07, 0.41960785)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=838545047]
+libraries/ = SubResource("AnimationLibrary_qalbg")
+autoplay = &"run"
+
+[node name="switch" type="Timer" parent="." unique_id=1757391562]
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="switch" to="." method="_on_switch_timeout"]

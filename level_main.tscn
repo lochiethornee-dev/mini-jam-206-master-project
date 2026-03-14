@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://5kj4m0lgmrwq" path="res://enemy_manager.gd" id="6_cu163"]
 [ext_resource type="PackedScene" uid="uid://doqpjx3m8cew5" path="res://cactusobstacle.tscn" id="7_6sf5y"]
 [ext_resource type="Texture2D" uid="uid://cdi3qumitklnt" path="res://ARTS!/background parralaxes/Grass.png" id="11_dhmjr"]
-[ext_resource type="PackedScene" uid="uid://cx0yfv4nw5qrk" path="res://aliendog.tscn" id="13_1vveb"]
 [ext_resource type="Script" uid="uid://bqk8x0p22mao8" path="res://itemmanager.gd" id="13_ja7m2"]
 
 [sub_resource type="Animation" id="Animation_dw44o"]
@@ -481,6 +480,12 @@ _data = {
 &"intro enemy": SubResource("Animation_k2n5e")
 }
 
+[sub_resource type="Curve2D" id="Curve2D_n1ki8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1926, 611, 0, 0, 0, 0, 1421, 618, 0, 0, 0, 0, 1423, 355, 0, 0, 0, 0, 1926, 358, 0, 0, 0, 0, 1926, 611)
+}
+point_count = 5
+
 [sub_resource type="Curve2D" id="Curve2D_t50rk"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1432, 227, 0, 0, 0, 0, 1422, 583, 0, 0, 0, 0, 1929, 492, 0, 0, 0, 0, 1878, 291, 0, 0, 0, 0, 1715, 387, 0, 0, 0, 0, 1891, 566, 0, 0, 0, 0, 1515, 266, 0, 0, 0, 0, 1434, 227, 0, 0, 0, 0, 2372, 409, 0, 0, 0, 0, 2066, 462, 0, 0, 0, 0, 1990, 412, 0, 0, 0, 0, 2013, 519, 0, 0, 0, 0, 2203, 317, 0, 0, 0, 0, 1432, 227, 0, 0, 0, 0, 1930, 496, 0, 0, 0, 0, 1967, 392)
@@ -649,16 +654,16 @@ text = "Now..."
 
 [node name="Label2" type="Label" parent="signs and UI" unique_id=1762392337]
 visible = false
-offset_left = 420.0
-offset_top = 201.0
-offset_right = 753.0
-offset_bottom = 330.0
+offset_left = 276.0
+offset_top = 206.0
+offset_right = 921.0
+offset_bottom = 335.0
 theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
 theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("5_k2n5e")
 theme_override_font_sizes/font_size = 120
-text = "SURVIVE!"
+text = "SAVE THE WORLD!"
 
 [node name="Score" type="Label" parent="signs and UI" unique_id=1913015846]
 unique_name_in_owner = true
@@ -711,6 +716,17 @@ autoplay = &"intro enemy"
 unique_name_in_owner = true
 one_shot = true
 
+[node name="aliendoggytimer" type="Timer" parent="enemy manager" unique_id=1230904928]
+unique_name_in_owner = true
+
+[node name="dogpathpath" type="Path2D" parent="enemy manager" unique_id=1684772530]
+curve = SubResource("Curve2D_n1ki8")
+
+[node name="dogpath" type="PathFollow2D" parent="enemy manager/dogpathpath" unique_id=830069072]
+unique_name_in_owner = true
+position = Vector2(1926, 611)
+rotation = 3.127732
+
 [node name="Obstacle manager" type="Node2D" parent="." unique_id=1501221403]
 y_sort_enabled = true
 
@@ -718,6 +734,7 @@ y_sort_enabled = true
 position = Vector2(2774, 482)
 
 [node name="Path2D" type="Path2D" parent="Obstacle manager" unique_id=2135058510]
+visible = false
 curve = SubResource("Curve2D_t50rk")
 
 [node name="Obstaclepath" type="PathFollow2D" parent="Obstacle manager/Path2D" unique_id=1812910811]
@@ -753,7 +770,7 @@ script = ExtResource("13_ja7m2")
 
 [node name="bandagetimer" type="Timer" parent="itemmanager" unique_id=15387194]
 unique_name_in_owner = true
-wait_time = 100.0
+wait_time = 60.0
 autostart = true
 
 [node name="Scoretick" type="Timer" parent="." unique_id=83126504]
@@ -761,13 +778,8 @@ unique_name_in_owner = true
 wait_time = 15.0
 autostart = true
 
-[node name="aliendog" parent="." unique_id=1071900331 instance=ExtResource("13_1vveb")]
-position = Vector2(2439, 378)
-
-[node name="aliendog2" parent="." unique_id=1458236495 instance=ExtResource("13_1vveb")]
-position = Vector2(3393, 477)
-
 [connection signal="timeout" from="enemy manager/alienshooter1timer" to="enemy manager" method="_on_alienshooter_1_timer_timeout"]
+[connection signal="timeout" from="enemy manager/aliendoggytimer" to="enemy manager" method="_on_aliendoggytimer_timeout"]
 [connection signal="timeout" from="Obstacle manager/cactustimer" to="." method="_on_cactustimer_timeout"]
 [connection signal="timeout" from="itemmanager/bandagetimer" to="itemmanager" method="_on_bandagetimer_timeout"]
 [connection signal="timeout" from="Scoretick" to="." method="_on_scoretick_timeout"]
