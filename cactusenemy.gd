@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var alive = true
 var health = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,11 +9,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if !alive:
+		position.x += -115 * delta
 
 func take_damage():
 	if health <= 0:
-		queue_free()
+		death()
 		Global.score += 100
 		
 
@@ -27,3 +29,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	#if body.has_method("damaged"):
 		#body.damaged(1)
 	pass
+
+func death():
+	%deathdelay.start()
+	%deathsound.play()
+	%AnimationPlayer.play("death")
+	$CollisionShape2D.set_deferred("disabled", true)
+	%CollisionShape2Darea.set_deferred("disabled", true)
+	alive = false
+	
+
+
+func _on_deathdelay_timeout() -> void:
+	queue_free()

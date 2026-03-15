@@ -16,4 +16,14 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("heal") and Global.healthmanager < 3:
 		body.heal(1)
-		queue_free()
+		pickup()
+		
+func pickup():
+	$Timer.start()
+	$sound.play()
+	$Sprite2D.visible = false
+	$CollisionShape2D.disabled = true
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

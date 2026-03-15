@@ -1,0 +1,328 @@
+[gd_scene format=3 uid="uid://bsw4juftv00d8"]
+
+[ext_resource type="Script" uid="uid://dsn40fujv6yhb" path="res://bigguy.gd" id="1_0s050"]
+[ext_resource type="Texture2D" uid="uid://ciuu3wwc54ydk" path="res://ARTS!/enemys and obstavles/big fella/Big Boi 1.png" id="1_7m5a4"]
+[ext_resource type="Texture2D" uid="uid://bxmete4t33no7" path="res://ARTS!/enemys and obstavles/big fella/Big Boi 2.png" id="2_0s050"]
+[ext_resource type="Texture2D" uid="uid://b7hm1kvidkdhm" path="res://ARTS!/enemys and obstavles/Alien Smoke 1.png" id="3_h65cf"]
+[ext_resource type="AudioStream" uid="uid://ce54mwfrgn0wo" path="res://sounds/gunshot alien.wav" id="4_eg85g"]
+[ext_resource type="Texture2D" uid="uid://cfic4frl7x7b5" path="res://ARTS!/enemys and obstavles/Alien Smoke 2.png" id="4_vxaji"]
+[ext_resource type="Texture2D" uid="uid://bqkt35d1esp37" path="res://ARTS!/enemys and obstavles/Alien Smoke 3.png" id="5_xnu37"]
+[ext_resource type="Texture2D" uid="uid://bbhgjffk2ihpy" path="res://ARTS!/enemys and obstavles/Alien Smoke 4.png" id="6_1pcaq"]
+[ext_resource type="AudioStream" uid="uid://bisidarpl8rhm" path="res://sounds/death alienboss.wav" id="9_vxaji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eg85g"]
+size = Vector2(248, 337)
+
+[sub_resource type="Animation" id="Animation_di408"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7m5a4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2n0hp"]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000845, 0.4000169, 0.58839697),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_h65cf"), ExtResource("4_vxaji"), ExtResource("5_xnu37"), ExtResource("6_1pcaq")]
+}
+
+[sub_resource type="Animation" id="Animation_ox0ji"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_7m5a4"), ExtResource("2_0s050"), ExtResource("1_7m5a4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mofow"]
+_data = {
+&"RESET": SubResource("Animation_di408"),
+&"death": SubResource("Animation_2n0hp"),
+&"walk": SubResource("Animation_ox0ji")
+}
+
+[sub_resource type="Animation" id="Animation_eg85g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1344, 350)]
+}
+
+[sub_resource type="Animation" id="Animation_0s050"]
+resource_name = "fight"
+length = 62.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1995642, 5.167198, 7.1337004, 9.943946, 14, 17.166666, 21.533333, 24.033333, 31.80535, 40.202507, 43.005623, 58.070404, 62),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1344, 350), Vector2(979, 352), Vector2(979, 352), Vector2(979, 226), Vector2(979, 226), Vector2(979, 424), Vector2(979, 424), Vector2(979, 219.00002), Vector2(979, 359), Vector2(979, 359), Vector2(979, 487), Vector2(979, 487), Vector2(979, 209), Vector2(1313, 209)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.8, 3, 8.2, 8.4, 14.6, 14.8, 18, 18.2, 19, 19.2, 20, 20.2, 24.2, 24.4, 24.8, 25, 25.4, 25.6, 28.033333, 28.233332, 28.633331, 28.833332, 29.233332, 29.433332, 33.547134, 33.747135, 35.461212, 35.661213, 37.333332, 37.533333, 41.60222, 41.80222, 44.705444, 44.905445, 46.779034, 46.979034, 48.879204, 49.079205, 51.012436, 51.212437, 53.218945, 53.418945),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eg85g"]
+_data = {
+&"RESET": SubResource("Animation_eg85g"),
+&"fight": SubResource("Animation_0s050")
+}
+
+[node name="bigguy" type="CharacterBody2D" unique_id=1152039672]
+z_index = 1
+position = Vector2(1344, 350)
+scale = Vector2(0.8, 0.8)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_0s050")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1384159505]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("1_7m5a4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1780703917]
+position = Vector2(-10, -0.5)
+shape = SubResource("RectangleShape2D_eg85g")
+
+[node name="walk" type="AnimationPlayer" parent="." unique_id=946632864]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_mofow")
+autoplay = &"walk"
+
+[node name="cooldown" type="Timer" parent="." unique_id=1868434104]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[node name="Marker" type="Marker2D" parent="." unique_id=2017605969]
+unique_name_in_owner = true
+position = Vector2(-152, -31)
+
+[node name="movement" type="AnimationPlayer" parent="." unique_id=1703611198]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_eg85g")
+autoplay = &"fight"
+
+[node name="shootgun" type="AudioStreamPlayer" parent="." unique_id=897819866]
+unique_name_in_owner = true
+stream = ExtResource("4_eg85g")
+volume_db = -8.0
+
+[node name="deathdelay" type="Timer" parent="." unique_id=1929820023]
+unique_name_in_owner = true
+
+[node name="deathsound" type="AudioStreamPlayer" parent="." unique_id=1955156223]
+unique_name_in_owner = true
+stream = ExtResource("9_vxaji")
+
+[connection signal="timeout" from="deathdelay" to="." method="_on_deathdelay_timeout"]

@@ -1,0 +1,880 @@
+[gd_scene format=3 uid="uid://bk3hq0vluwa42"]
+
+[ext_resource type="PackedScene" uid="uid://28sdx5d1be4p" path="res://player.tscn" id="1_1rrhw"]
+[ext_resource type="Script" uid="uid://b2cu8pidqa14o" path="res://level_main.gd" id="1_k2n5e"]
+[ext_resource type="Texture2D" uid="uid://cetx0ki2xwyqi" path="res://ARTS!/background parralaxes/Sky 4.png" id="2_n1ki8"]
+[ext_resource type="PackedScene" uid="uid://qk3arv64lu66" path="res://cactusenemy.tscn" id="3_dw44o"]
+[ext_resource type="Texture2D" uid="uid://bjw8rmvbwmutk" path="res://ARTS!/background parralaxes/Ground.png" id="3_l6pjf"]
+[ext_resource type="Texture2D" uid="uid://k2v6jcxxdp37" path="res://ARTS!/sign.png" id="4_17q82"]
+[ext_resource type="FontFile" uid="uid://dfonbs8pvc4yt" path="res://ARTS!/BroncoPersonalUse.ttf" id="5_k2n5e"]
+[ext_resource type="Texture2D" uid="uid://dr30k76o0lfxi" path="res://ARTS!/COWHORSE AND HOSE BOY/Full Heart.png" id="5_t50rk"]
+[ext_resource type="Script" uid="uid://5kj4m0lgmrwq" path="res://enemy_manager.gd" id="6_cu163"]
+[ext_resource type="PackedScene" uid="uid://doqpjx3m8cew5" path="res://cactusobstacle.tscn" id="7_6sf5y"]
+[ext_resource type="Texture2D" uid="uid://cdi3qumitklnt" path="res://ARTS!/background parralaxes/Grass.png" id="11_dhmjr"]
+[ext_resource type="Script" uid="uid://mpuwdc3saoka" path="res://levelmanager.gd" id="13_1vveb"]
+[ext_resource type="Script" uid="uid://bqk8x0p22mao8" path="res://itemmanager.gd" id="13_ja7m2"]
+
+[sub_resource type="Animation" id="Animation_dw44o"]
+resource_name = "Background cycle"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1728, 324), Vector2(-1728, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5184, 324), Vector2(1728, 324)]
+}
+
+[sub_resource type="Animation" id="Animation_i3xgx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5184, 324)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17q82"]
+_data = {
+&"Background cycle": SubResource("Animation_dw44o"),
+&"RESET": SubResource("Animation_i3xgx")
+}
+
+[sub_resource type="Animation" id="Animation_dhmjr"]
+resource_name = "Ground"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1728, 537), Vector2(-1728, 537)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5184, 537), Vector2(1728, 537)]
+}
+
+[sub_resource type="Animation" id="Animation_n1ki8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1728, 537)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5184, 537)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ja7m2"]
+_data = {
+&"Ground": SubResource("Animation_dhmjr"),
+&"RESET": SubResource("Animation_n1ki8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sf5y"]
+size = Vector2(737, 1413)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rd2yn"]
+size = Vector2(959, 1569)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rrhw"]
+size = Vector2(554, 1870)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t50rk"]
+size = Vector2(723, 1886.75)
+
+[sub_resource type="Animation" id="Animation_6sf5y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tut1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(769, -175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tut1/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Use arrow keys or 
+WASD to move"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tut1/Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-153.74998, 67.49999)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Label2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Score:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%heart1:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%heart2:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%heart3:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t50rk"]
+resource_name = "sign animations"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tut1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.46, 0.62000006, 3.6, 3.89, 4.1535177, 5, 6.0015397, 6.3315396, 6.4615397, 6.6215396, 9.60154, 9.89154, 10.155058, 11, 11.001539),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(769, -175), Vector2(769, 96), Vector2(769, 80), Vector2(769, 96), Vector2(769, 96), Vector2(769, 56), Vector2(769, 75), Vector2(769, -203), Vector2(769, -175), Vector2(769, 96), Vector2(769, 80), Vector2(769, 96), Vector2(769, 96), Vector2(769, 56), Vector2(769, 75), Vector2(769, -165), Vector2(769, -203)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tut1/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.5388584, 5.904134),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["Use arrow keys or 
+WASD to move", "Use arrow keys or 
+WASD to move", "Use SPACE to shoot"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tut1/Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.6488595, 6.0580463),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-195.71426, 57.14286), Vector2(-195.71426, 57.14286), Vector2(-198.57141, 89.422935)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(11.015471, 11.060317),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(11.060317, 12.002908, 15.013831, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(13.011261, 13.040488),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Label2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(15.019338, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Score:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(15.009835, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%heart1:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(15.007543, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%heart2:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(15.007543, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%heart3:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(15.007543, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cu163"]
+_data = {
+&"RESET": SubResource("Animation_6sf5y"),
+&"sign animations": SubResource("Animation_t50rk")
+}
+
+[sub_resource type="Animation" id="Animation_17q82"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cactusenemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1232, 37)]
+}
+
+[sub_resource type="Animation" id="Animation_k2n5e"]
+resource_name = "intro enemy"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cactusenemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(6.0016494, 6.0057826, 6.985396, 18.052544, 19.903475),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1232, 37), Vector2(1224, 331), Vector2(997, 349), Vector2(997, 349), Vector2(1238, 349)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cactusenemy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(19.934805),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sf5y"]
+_data = {
+&"RESET": SubResource("Animation_17q82"),
+&"intro enemy": SubResource("Animation_k2n5e")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_n1ki8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1926, 611, 0, 0, 0, 0, 1421, 618, 0, 0, 0, 0, 1423, 355, 0, 0, 0, 0, 1926, 358, 0, 0, 0, 0, 1926, 611)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_t50rk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1432, 227, 0, 0, 0, 0, 1422, 583, 0, 0, 0, 0, 1929, 492, 0, 0, 0, 0, 1878, 291, 0, 0, 0, 0, 1715, 387, 0, 0, 0, 0, 1891, 566, 0, 0, 0, 0, 1515, 266, 0, 0, 0, 0, 1434, 227, 0, 0, 0, 0, 2372, 409, 0, 0, 0, 0, 2066, 462, 0, 0, 0, 0, 1990, 412, 0, 0, 0, 0, 2013, 519, 0, 0, 0, 0, 2203, 317, 0, 0, 0, 0, 1432, 227, 0, 0, 0, 0, 1930, 496, 0, 0, 0, 0, 1967, 392)
+}
+point_count = 16
+
+[sub_resource type="Animation" id="Animation_ja7m2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1311, 325)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D6:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4768, 326)]
+}
+
+[sub_resource type="Animation" id="Animation_1vveb"]
+resource_name = "ground move"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1728, 354), Vector2(-1728, 354)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D6:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5185, 354), Vector2(1728, 354)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2lk7g"]
+_data = {
+&"RESET": SubResource("Animation_ja7m2"),
+&"ground move": SubResource("Animation_1vveb")
+}
+
+[sub_resource type="Animation" id="Animation_2lk7g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../signs and UI/Label3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../signs and UI/Label3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_em6pg"]
+resource_name = "bossmessage"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../signs and UI/Label3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../signs and UI/Label3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekkmh"]
+_data = {
+&"RESET": SubResource("Animation_2lk7g"),
+&"bossmessage": SubResource("Animation_em6pg")
+}
+
+[node name="levelMain" type="Node2D" unique_id=552496253]
+y_sort_enabled = true
+script = ExtResource("1_k2n5e")
+
+[node name="Background" type="Node2D" parent="." unique_id=1616320521]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=2083262412]
+texture_filter = 1
+position = Vector2(576, 324)
+texture = ExtResource("2_n1ki8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=783094067]
+texture_filter = 1
+position = Vector2(5184, 324)
+texture = ExtResource("2_n1ki8")
+
+[node name="Background animator" type="AnimationPlayer" parent="Background" unique_id=557719964]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_17q82")
+autoplay = &"Background cycle"
+
+[node name="Sprite2D3" type="Sprite2D" parent="Background" unique_id=309238050]
+texture_filter = 1
+position = Vector2(-1728, 537)
+texture = ExtResource("3_l6pjf")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Background" unique_id=181642570]
+texture_filter = 1
+position = Vector2(5184, 537)
+texture = ExtResource("3_l6pjf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background" unique_id=1337541688]
+libraries/ = SubResource("AnimationLibrary_ja7m2")
+autoplay = &"Ground"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1577265572]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1238580238]
+position = Vector2(-348.5, 166.5)
+shape = SubResource("RectangleShape2D_6sf5y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1879737451]
+position = Vector2(1600.5, 362.5)
+shape = SubResource("RectangleShape2D_rd2yn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=245014870]
+position = Vector2(215, 902)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_1rrhw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=484930759]
+position = Vector2(206.375, -204.50002)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_t50rk")
+
+[node name="signs and UI" type="Node2D" parent="." unique_id=98188901]
+z_index = 2
+z_as_relative = false
+
+[node name="tut1" type="Sprite2D" parent="signs and UI" unique_id=2079987872]
+texture_filter = 1
+position = Vector2(769, -175)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_17q82")
+
+[node name="Label" type="Label" parent="signs and UI/tut1" unique_id=768130185]
+offset_left = -153.74998
+offset_top = 67.49999
+offset_right = 237.25002
+offset_bottom = 200.5
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_k2n5e")
+theme_override_font_sizes/font_size = 60
+text = "Use arrow keys or 
+WASD to move"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="signs and UI" unique_id=743978885]
+libraries/ = SubResource("AnimationLibrary_cu163")
+autoplay = &"sign animations"
+
+[node name="Label" type="Label" parent="signs and UI" unique_id=780437393]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 387.0
+offset_top = 133.0
+offset_right = 516.0
+offset_bottom = 203.0
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_k2n5e")
+theme_override_font_sizes/font_size = 65
+text = "Now..."
+
+[node name="Label2" type="Label" parent="signs and UI" unique_id=1762392337]
+visible = false
+offset_left = 276.0
+offset_top = 206.0
+offset_right = 921.0
+offset_bottom = 335.0
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_k2n5e")
+theme_override_font_sizes/font_size = 120
+text = "SAVE THE WORLD!"
+
+[node name="Label3" type="Label" parent="signs and UI" unique_id=1837405811]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 266.0
+offset_top = 206.0
+offset_right = 944.0
+offset_bottom = 335.0
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_k2n5e")
+theme_override_font_sizes/font_size = 120
+text = "Incoming big guy"
+
+[node name="Score" type="Label" parent="signs and UI" unique_id=1913015846]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+offset_left = 883.0
+offset_top = 46.0
+offset_right = 1047.0
+offset_bottom = 111.0
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_k2n5e")
+theme_override_font_sizes/font_size = 60
+text = "SCORE: 0"
+
+[node name="heart1" type="Sprite2D" parent="signs and UI" unique_id=1421477017]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(135.85, 79.05)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_t50rk")
+
+[node name="heart2" type="Sprite2D" parent="signs and UI" unique_id=1302436955]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(204.85, 79.05)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_t50rk")
+
+[node name="heart3" type="Sprite2D" parent="signs and UI" unique_id=1417309888]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(273.85, 79.05)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_t50rk")
+
+[node name="enemy manager" type="Node2D" parent="." unique_id=1884096853]
+y_sort_enabled = true
+script = ExtResource("6_cu163")
+
+[node name="cactusenemy" parent="enemy manager" unique_id=555866084 instance=ExtResource("3_dw44o")]
+position = Vector2(1232, 37)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="enemy manager/cactusenemy" unique_id=407966596]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_6sf5y")
+autoplay = &"intro enemy"
+
+[node name="alienshooter1timer" type="Timer" parent="enemy manager" unique_id=485774838]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="aliendoggytimer" type="Timer" parent="enemy manager" unique_id=1230904928]
+unique_name_in_owner = true
+
+[node name="dogpathpath" type="Path2D" parent="enemy manager" unique_id=1684772530]
+curve = SubResource("Curve2D_n1ki8")
+
+[node name="dogpath" type="PathFollow2D" parent="enemy manager/dogpathpath" unique_id=830069072]
+unique_name_in_owner = true
+position = Vector2(1926, 611)
+rotation = 3.127732
+
+[node name="Obstacle manager" type="Node2D" parent="." unique_id=1501221403]
+y_sort_enabled = true
+
+[node name="cactusobstacle" parent="Obstacle manager" unique_id=491843868 instance=ExtResource("7_6sf5y")]
+position = Vector2(2774, 482)
+
+[node name="Path2D" type="Path2D" parent="Obstacle manager" unique_id=2135058510]
+visible = false
+curve = SubResource("Curve2D_t50rk")
+
+[node name="Obstaclepath" type="PathFollow2D" parent="Obstacle manager/Path2D" unique_id=1812910811]
+unique_name_in_owner = true
+position = Vector2(1432, 227)
+rotation = 1.5988789
+
+[node name="cactustimer" type="Timer" parent="Obstacle manager" unique_id=1942969136]
+unique_name_in_owner = true
+
+[node name="player" parent="." unique_id=1784760530 instance=ExtResource("1_1rrhw")]
+position = Vector2(288, 377)
+
+[node name="foreground" type="Node2D" parent="." unique_id=1829715359]
+z_index = 1
+
+[node name="Sprite2D5" type="Sprite2D" parent="foreground" unique_id=2017144684]
+texture_filter = 1
+position = Vector2(1311, 325)
+texture = ExtResource("11_dhmjr")
+
+[node name="Sprite2D6" type="Sprite2D" parent="foreground" unique_id=1004178096]
+texture_filter = 1
+position = Vector2(4768, 326)
+texture = ExtResource("11_dhmjr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="foreground" unique_id=1511347590]
+libraries/ = SubResource("AnimationLibrary_2lk7g")
+autoplay = &"ground move"
+
+[node name="itemmanager" type="Node2D" parent="." unique_id=638525233]
+script = ExtResource("13_ja7m2")
+
+[node name="bandagetimer" type="Timer" parent="itemmanager" unique_id=15387194]
+unique_name_in_owner = true
+wait_time = 60.0
+autostart = true
+
+[node name="Scoretick" type="Timer" parent="." unique_id=83126504]
+unique_name_in_owner = true
+wait_time = 15.0
+autostart = true
+
+[node name="levelmanager" type="Node2D" parent="." unique_id=525114469]
+script = ExtResource("13_1vveb")
+
+[node name="boss1timer" type="Timer" parent="levelmanager" unique_id=1718931757]
+unique_name_in_owner = true
+wait_time = 120.0
+autostart = true
+
+[node name="boss1timer2" type="Timer" parent="levelmanager" unique_id=668626367]
+unique_name_in_owner = true
+wait_time = 127.0
+autostart = true
+
+[node name="anim" type="AnimationPlayer" parent="levelmanager" unique_id=350591505]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ekkmh")
+
+[connection signal="timeout" from="enemy manager/alienshooter1timer" to="enemy manager" method="_on_alienshooter_1_timer_timeout"]
+[connection signal="timeout" from="enemy manager/aliendoggytimer" to="enemy manager" method="_on_aliendoggytimer_timeout"]
+[connection signal="timeout" from="Obstacle manager/cactustimer" to="." method="_on_cactustimer_timeout"]
+[connection signal="timeout" from="itemmanager/bandagetimer" to="itemmanager" method="_on_bandagetimer_timeout"]
+[connection signal="timeout" from="Scoretick" to="." method="_on_scoretick_timeout"]
+[connection signal="timeout" from="levelmanager/boss1timer" to="levelmanager" method="_on_boss_1_timer_timeout"]
+[connection signal="timeout" from="levelmanager/boss1timer2" to="levelmanager" method="_on_boss_1_timer_2_timeout"]

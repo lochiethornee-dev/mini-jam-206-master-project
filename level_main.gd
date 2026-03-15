@@ -3,7 +3,7 @@ extends Node2D
 var cactispawned = 0
 
 var fullheart = load("res://ARTS!/COWHORSE AND HOSE BOY/Full Heart.png")
-var emptyheart = load("res://ARTS!/COWHORSE AND HOSE BOY/Empty Heart.png")
+var emptyheart = load("res://ARTS!/COWHORSE AND HOSE BOY/Broken Heart.png")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	%cactustimer.wait_time = 12
@@ -40,8 +40,8 @@ func spawn_cactus():
 	add_child(newcactus)
 	cactispawned += 1
 	#print(cactispawned)
-	if cactispawned == 100:
-		%cactustimer.wait_time = 20
+	if cactispawned == 85:
+		%cactustimer.wait_time = 30
 		%cactustimer.start()
 	
 
@@ -53,6 +53,7 @@ func _on_cactustimer_timeout() -> void:
 		#%cactustimer.wait_time = %cactustimer.wait_time - 1
 		%cactustimer.wait_time = 1
 		%cactustimer.start()
+	#print("cacti" + str(cactispawned))
 	spawn_cactus()
 
 
@@ -61,3 +62,17 @@ func _on_scoretick_timeout() -> void:
 		%Scoretick.wait_time = 1
 		%Scoretick.start()
 	Global.score += 10
+
+var gametime = 0
+func _on_gametime_timeout() -> void:
+	gametime += 1
+	#print(gametime)
+
+
+func _on_intromusic_finished() -> void:
+	#%"main music".loop
+	%"main music".play()
+
+
+#func _on_main_music_finished() -> void:
+	#%"main music".play()

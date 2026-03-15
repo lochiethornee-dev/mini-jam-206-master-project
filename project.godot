@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Mini Jam 206 master project"
+run/main_scene="uid://71qmmm7c8bf7"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -21,6 +22,7 @@ Global="*uid://duqhlilo4ivbs"
 [display]
 
 window/size/resizable=false
+window/stretch/mode="viewport"
 
 [input]
 
@@ -79,4 +81,5 @@ shoot={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

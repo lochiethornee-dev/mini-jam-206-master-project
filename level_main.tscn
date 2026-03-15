@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://28sdx5d1be4p" path="res://player.tscn" id="1_1rrhw"]
 [ext_resource type="Script" uid="uid://b2cu8pidqa14o" path="res://level_main.gd" id="1_k2n5e"]
-[ext_resource type="Texture2D" uid="uid://cetx0ki2xwyqi" path="res://ARTS!/background parralaxes/Sky 4.png" id="2_n1ki8"]
+[ext_resource type="Texture2D" uid="uid://dxylvwxvr23uo" path="res://ARTS!/background parralaxes/Bigger Sky.png" id="2_ja7m2"]
 [ext_resource type="PackedScene" uid="uid://qk3arv64lu66" path="res://cactusenemy.tscn" id="3_dw44o"]
 [ext_resource type="Texture2D" uid="uid://bjw8rmvbwmutk" path="res://ARTS!/background parralaxes/Ground.png" id="3_l6pjf"]
 [ext_resource type="Texture2D" uid="uid://k2v6jcxxdp37" path="res://ARTS!/sign.png" id="4_17q82"]
@@ -11,7 +11,10 @@
 [ext_resource type="Script" uid="uid://5kj4m0lgmrwq" path="res://enemy_manager.gd" id="6_cu163"]
 [ext_resource type="PackedScene" uid="uid://doqpjx3m8cew5" path="res://cactusobstacle.tscn" id="7_6sf5y"]
 [ext_resource type="Texture2D" uid="uid://cdi3qumitklnt" path="res://ARTS!/background parralaxes/Grass.png" id="11_dhmjr"]
+[ext_resource type="Script" uid="uid://mpuwdc3saoka" path="res://levelmanager.gd" id="13_1vveb"]
 [ext_resource type="Script" uid="uid://bqk8x0p22mao8" path="res://itemmanager.gd" id="13_ja7m2"]
+[ext_resource type="AudioStream" uid="uid://dsp61xap52wwf" path="res://sounds/main track.wav" id="14_1vveb"]
+[ext_resource type="AudioStream" uid="uid://dgf8o6j5phn8c" path="res://sounds/main track intro.wav" id="14_2lk7g"]
 
 [sub_resource type="Animation" id="Animation_dw44o"]
 resource_name = "Background cycle"
@@ -554,6 +557,67 @@ _data = {
 &"ground move": SubResource("Animation_1vveb")
 }
 
+[sub_resource type="Animation" id="Animation_2lk7g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../signs and UI/Label3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../signs and UI/Label3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_em6pg"]
+resource_name = "bossmessage"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../signs and UI/Label3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../signs and UI/Label3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekkmh"]
+_data = {
+&"RESET": SubResource("Animation_2lk7g"),
+&"bossmessage": SubResource("Animation_em6pg")
+}
+
 [node name="levelMain" type="Node2D" unique_id=552496253]
 y_sort_enabled = true
 script = ExtResource("1_k2n5e")
@@ -563,12 +627,14 @@ script = ExtResource("1_k2n5e")
 [node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=2083262412]
 texture_filter = 1
 position = Vector2(576, 324)
-texture = ExtResource("2_n1ki8")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ja7m2")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=783094067]
 texture_filter = 1
 position = Vector2(5184, 324)
-texture = ExtResource("2_n1ki8")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ja7m2")
 
 [node name="Background animator" type="AnimationPlayer" parent="Background" unique_id=557719964]
 root_node = NodePath("../..")
@@ -627,7 +693,7 @@ offset_right = 237.25002
 offset_bottom = 200.5
 theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
 theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("5_k2n5e")
 theme_override_font_sizes/font_size = 60
 text = "Use arrow keys or 
@@ -664,6 +730,20 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("5_k2n5e")
 theme_override_font_sizes/font_size = 120
 text = "SAVE THE WORLD!"
+
+[node name="Label3" type="Label" parent="signs and UI" unique_id=1837405811]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 266.0
+offset_top = 206.0
+offset_right = 944.0
+offset_bottom = 335.0
+theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_outline_color = Color(0.2784314, 0.1764706, 0.1882353, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_k2n5e")
+theme_override_font_sizes/font_size = 120
+text = "Incoming big guy"
 
 [node name="Score" type="Label" parent="signs and UI" unique_id=1913015846]
 unique_name_in_owner = true
@@ -727,6 +807,11 @@ unique_name_in_owner = true
 position = Vector2(1926, 611)
 rotation = 3.127732
 
+[node name="shiptimer" type="Timer" parent="enemy manager" unique_id=1903167998]
+unique_name_in_owner = true
+wait_time = 80.0
+autostart = true
+
 [node name="Obstacle manager" type="Node2D" parent="." unique_id=1501221403]
 y_sort_enabled = true
 
@@ -749,7 +834,7 @@ unique_name_in_owner = true
 position = Vector2(288, 377)
 
 [node name="foreground" type="Node2D" parent="." unique_id=1829715359]
-z_index = 1
+z_index = 3
 
 [node name="Sprite2D5" type="Sprite2D" parent="foreground" unique_id=2017144684]
 texture_filter = 1
@@ -770,7 +855,7 @@ script = ExtResource("13_ja7m2")
 
 [node name="bandagetimer" type="Timer" parent="itemmanager" unique_id=15387194]
 unique_name_in_owner = true
-wait_time = 60.0
+wait_time = 30.0
 autostart = true
 
 [node name="Scoretick" type="Timer" parent="." unique_id=83126504]
@@ -778,8 +863,45 @@ unique_name_in_owner = true
 wait_time = 15.0
 autostart = true
 
+[node name="levelmanager" type="Node2D" parent="." unique_id=525114469]
+script = ExtResource("13_1vveb")
+
+[node name="boss1timer" type="Timer" parent="levelmanager" unique_id=1718931757]
+unique_name_in_owner = true
+wait_time = 110.0
+one_shot = true
+autostart = true
+
+[node name="boss1timer2" type="Timer" parent="levelmanager" unique_id=668626367]
+unique_name_in_owner = true
+wait_time = 117.0
+autostart = true
+
+[node name="anim" type="AnimationPlayer" parent="levelmanager" unique_id=350591505]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ekkmh")
+
+[node name="gametime" type="Timer" parent="." unique_id=1330213480]
+unique_name_in_owner = true
+autostart = true
+
+[node name="intromusic" type="AudioStreamPlayer" parent="." unique_id=796991828]
+stream = ExtResource("14_2lk7g")
+autoplay = true
+
+[node name="main music" type="AudioStreamPlayer" parent="." unique_id=1845648929]
+unique_name_in_owner = true
+stream = ExtResource("14_1vveb")
+
 [connection signal="timeout" from="enemy manager/alienshooter1timer" to="enemy manager" method="_on_alienshooter_1_timer_timeout"]
 [connection signal="timeout" from="enemy manager/aliendoggytimer" to="enemy manager" method="_on_aliendoggytimer_timeout"]
+[connection signal="timeout" from="enemy manager/shiptimer" to="enemy manager" method="_on_shiptimer_timeout"]
 [connection signal="timeout" from="Obstacle manager/cactustimer" to="." method="_on_cactustimer_timeout"]
 [connection signal="timeout" from="itemmanager/bandagetimer" to="itemmanager" method="_on_bandagetimer_timeout"]
 [connection signal="timeout" from="Scoretick" to="." method="_on_scoretick_timeout"]
+[connection signal="timeout" from="levelmanager/boss1timer" to="levelmanager" method="_on_boss_1_timer_timeout"]
+[connection signal="timeout" from="levelmanager/boss1timer2" to="levelmanager" method="_on_boss_1_timer_2_timeout"]
+[connection signal="timeout" from="gametime" to="." method="_on_gametime_timeout"]
+[connection signal="timeout" from="gametime" to="enemy manager" method="_on_gametime_timeout"]
+[connection signal="finished" from="intromusic" to="." method="_on_intromusic_finished"]
+[connection signal="finished" from="main music" to="." method="_on_main_music_finished"]

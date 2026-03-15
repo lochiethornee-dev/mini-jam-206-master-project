@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c56hlym6m88w7"
+path="res://.godot/imported/SS_VMTT_125_fx_solar_uplifter_bpm_sync R.wav-3f6ef538dfc5dea26e00d9418c392552.sample"
+
+[deps]
+
+source_file="res://sounds/music/main track Project/Samples/Processed/Reverse/SS_VMTT_125_fx_solar_uplifter_bpm_sync R.wav"
+dest_files=["res://.godot/imported/SS_VMTT_125_fx_solar_uplifter_bpm_sync R.wav-3f6ef538dfc5dea26e00d9418c392552.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

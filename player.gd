@@ -9,6 +9,7 @@ signal death
 func _ready() -> void:
 	var bullet = bulletScene.instantiate()
 	Global.healthmanager = health
+	%muzzle.visible = false
 	
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -21,18 +22,23 @@ func _physics_process(delta):
 		var bullet = bulletScene.instantiate()
 		add_sibling(bullet)
 		bullet.global_position = %Marker2D.global_position
+		%gunshot.play()
 		%cooldown.start()
+		%flash.play("flash")
 
 
 
 func damaged(damage):
 
-	health -= damage
-	%Sprite2D.modulate = Color(0.788, 0.796, 0.639, 1.0)
-	await get_tree().create_timer(.1).timeout
-	%Sprite2D.modulate = Color(1,1,1)
-	print("health: " + str(health))
-	updatehealth()
+	if %damagebuff.is_stopped():
+		health -= damage
+		%Sprite2D.modulate = Color(0.788, 0.796, 0.639, 1.0)
+		await get_tree().create_timer(.1).timeout
+		%Sprite2D.modulate = Color(1,1,1)
+		%damage.play()
+		#print("health: " + str(health))
+		updatehealth()
+		%damagebuff.start()
 
 func updatehealth():
 			if health <= 0:

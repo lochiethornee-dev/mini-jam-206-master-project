@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://bb18yqpx1066u" path="res://aliendog.gd" id="1_nuhfd"]
 [ext_resource type="Texture2D" uid="uid://rqcl3dn3nds8" path="res://ARTS!/enemys and obstavles/EL GOBLANO/Goblin Run 1.png" id="2_mhj5i"]
 [ext_resource type="Texture2D" uid="uid://beqadfg3s38wa" path="res://ARTS!/enemys and obstavles/EL GOBLANO/Goblin Run 2.png" id="3_23j8t"]
+[ext_resource type="Texture2D" uid="uid://b7hm1kvidkdhm" path="res://ARTS!/enemys and obstavles/Alien Smoke 1.png" id="3_qalbg"]
+[ext_resource type="Texture2D" uid="uid://cfic4frl7x7b5" path="res://ARTS!/enemys and obstavles/Alien Smoke 2.png" id="4_ws6c1"]
+[ext_resource type="Texture2D" uid="uid://bqkt35d1esp37" path="res://ARTS!/enemys and obstavles/Alien Smoke 3.png" id="5_qw3af"]
+[ext_resource type="Texture2D" uid="uid://bbhgjffk2ihpy" path="res://ARTS!/enemys and obstavles/Alien Smoke 4.png" id="6_rjkpy"]
+[ext_resource type="AudioStream" uid="uid://bdvea0dv00ps5" path="res://sounds/death aliendog.wav" id="8_ws6c1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ntyaj"]
 radius = 128.09763
@@ -60,6 +65,46 @@ tracks/3/keys = {
 "update": 1,
 "values": [0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:flip_v")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_23j8t"]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.595253),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_qalbg"), ExtResource("4_ws6c1"), ExtResource("5_qw3af"), ExtResource("6_rjkpy")]
+}
 
 [sub_resource type="Animation" id="Animation_mhj5i"]
 resource_name = "motion"
@@ -94,10 +139,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("2_mhj5i"), ExtResource("3_23j8t"), ExtResource("2_mhj5i")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qalbg"]
 _data = {
 &"RESET": SubResource("Animation_wt6xm"),
+&"death": SubResource("Animation_23j8t"),
 &"motion": SubResource("Animation_mhj5i"),
 &"run": SubResource("Animation_oribj")
 }
@@ -110,21 +168,33 @@ script = ExtResource("1_nuhfd")
 unique_name_in_owner = true
 texture = ExtResource("2_mhj5i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809513551]
+[node name="collidebox" type="CollisionShape2D" parent="." unique_id=1809513551]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_ntyaj")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2075027876]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=431106389]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_mhj5i")
 debug_color = Color(0.94142914, 0.24407408, 1.92523e-07, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=838545047]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_qalbg")
 autoplay = &"run"
 
 [node name="switch" type="Timer" parent="." unique_id=1757391562]
 autostart = true
 
+[node name="deathsound" type="AudioStreamPlayer" parent="." unique_id=935699816]
+unique_name_in_owner = true
+stream = ExtResource("8_ws6c1")
+volume_db = -8.0
+
+[node name="deathdelay" type="Timer" parent="." unique_id=640296890]
+unique_name_in_owner = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="switch" to="." method="_on_switch_timeout"]
+[connection signal="timeout" from="deathdelay" to="." method="_on_deathdelay_timeout"]

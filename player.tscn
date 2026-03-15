@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://blx8t3japwi8m" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://2hm7or7wud4w" path="res://ARTS!/COWHORSE AND HOSE BOY/CowHorse Run 2.png" id="2_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://75nbayhxjswh" path="res://ARTS!/COWHORSE AND HOSE BOY/CowHorse Run 4.png" id="3_hqtel"]
+[ext_resource type="Texture2D" uid="uid://df447vkuwlvd2" path="res://ARTS!/COWHORSE AND HOSE BOY/CowHorse Run NEW 1.png" id="3_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://ofi2ipc2lmgg" path="res://ARTS!/COWHORSE AND HOSE BOY/CowHorse Run NEW 2.png" id="4_dw050"]
+[ext_resource type="AudioStream" uid="uid://cwrnq4ws1lvld" path="res://sounds/gunshot player.wav" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://cf80x0n3poi0x" path="res://sounds/damage player.wav" id="5_sweqy"]
+[ext_resource type="Texture2D" uid="uid://dkanba0jjnssy" path="res://ARTS!/COWHORSE AND HOSE BOY/Muzzle Flash.png" id="7_b26j0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
 radius = 22.5
@@ -22,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("2_i3pqv"), ExtResource("3_hqtel")]
+"values": [ExtResource("3_1jxqw"), ExtResource("4_dw050")]
 }
 
 [sub_resource type="Animation" id="Animation_2hs0m"]
@@ -44,6 +48,43 @@ tracks/0/keys = {
 _data = {
 &"MOVING WEO": SubResource("Animation_sweqy"),
 &"RESET": SubResource("Animation_2hs0m")
+}
+
+[sub_resource type="Animation" id="Animation_n7ghd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nvl01"]
+resource_name = "flash\\"
+length = 0.3095
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29227614),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivps1"]
+_data = {
+&"RESET": SubResource("Animation_n7ghd"),
+&"flash": SubResource("Animation_nvl01")
 }
 
 [node name="player" type="CharacterBody2D" unique_id=1784760530]
@@ -75,3 +116,29 @@ autoplay = &"MOVING WEO"
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1717921664]
 unique_name_in_owner = true
 position = Vector2(58, -16)
+
+[node name="gunshot" type="AudioStreamPlayer" parent="." unique_id=1720370850]
+unique_name_in_owner = true
+stream = ExtResource("4_hqtel")
+volume_db = -10.0
+
+[node name="damage" type="AudioStreamPlayer" parent="." unique_id=618194941]
+unique_name_in_owner = true
+stream = ExtResource("5_sweqy")
+
+[node name="damagebuff" type="Timer" parent="." unique_id=68186725]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="muzzle" type="Sprite2D" parent="." unique_id=1171335191]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(63, -16)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_b26j0")
+flip_h = true
+
+[node name="flash" type="AnimationPlayer" parent="muzzle" unique_id=2045355738]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ivps1")

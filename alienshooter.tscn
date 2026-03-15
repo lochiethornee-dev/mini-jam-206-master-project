@@ -2,7 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://b04jun40tk6oh" path="res://ARTS!/enemys and obstavles/alien shooter/Alien 1.png" id="1_7aax2"]
 [ext_resource type="Script" uid="uid://c4opnu2xum28d" path="res://alienshooter.gd" id="1_y5ghm"]
-[ext_resource type="Texture2D" uid="uid://cayp7iryojrrs" path="res://ARTS!/enemys and obstavles/alien shooter/Alien 2.png" id="2_y5ghm"]
+[ext_resource type="Texture2D" uid="uid://b7hm1kvidkdhm" path="res://ARTS!/enemys and obstavles/Alien Smoke 1.png" id="3_6bocs"]
+[ext_resource type="Texture2D" uid="uid://cfic4frl7x7b5" path="res://ARTS!/enemys and obstavles/Alien Smoke 2.png" id="4_2tssf"]
+[ext_resource type="AudioStream" uid="uid://ce54mwfrgn0wo" path="res://sounds/gunshot alien.wav" id="4_xwt3i"]
+[ext_resource type="Texture2D" uid="uid://bqkt35d1esp37" path="res://ARTS!/enemys and obstavles/Alien Smoke 3.png" id="5_ehd3b"]
+[ext_resource type="Texture2D" uid="uid://bbhgjffk2ihpy" path="res://ARTS!/enemys and obstavles/Alien Smoke 4.png" id="6_mhrtq"]
+[ext_resource type="Texture2D" uid="uid://tyn1w38asg5h" path="res://ARTS!/enemys and obstavles/alien shooter/Sluggy 1.png" id="7_ehd3b"]
+[ext_resource type="Texture2D" uid="uid://dc3wr4rmsnwiq" path="res://ARTS!/enemys and obstavles/alien shooter/Sluggy 2.png" id="8_ehd3b"]
+[ext_resource type="AudioStream" uid="uid://wngn1vk5hs6d" path="res://sounds/death alien.wav" id="9_2tssf"]
 
 [sub_resource type="Animation" id="Animation_xwt3i"]
 length = 0.001
@@ -17,6 +24,46 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_7aax2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2hdvb"]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_6bocs"), ExtResource("4_2tssf"), ExtResource("5_ehd3b"), ExtResource("6_mhrtq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_aqtl0"]
@@ -33,17 +80,30 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("1_7aax2"), ExtResource("2_y5ghm"), ExtResource("1_7aax2")]
+"values": [ExtResource("7_ehd3b"), ExtResource("8_ehd3b"), ExtResource("7_ehd3b")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_deoss"]
 _data = {
 &"RESET": SubResource("Animation_xwt3i"),
+&"death": SubResource("Animation_2hdvb"),
 &"walk": SubResource("Animation_aqtl0")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hdvb"]
-size = Vector2(130, 222)
+size = Vector2(150, 152)
 
 [sub_resource type="Animation" id="Animation_y5ghm"]
 length = 0.001
@@ -83,7 +143,7 @@ _data = {
 }
 
 [node name="alienshooter" type="CharacterBody2D" unique_id=360884996]
-position = Vector2(1040, 0)
+position = Vector2(1040, -21)
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 0
@@ -92,24 +152,26 @@ script = ExtResource("1_y5ghm")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1117573008]
 unique_name_in_owner = true
 texture_filter = 1
+position = Vector2(0, -34)
 texture = ExtResource("1_7aax2")
+flip_v = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1631811573]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_deoss")
 autoplay = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=440462701]
-visible = false
-position = Vector2(25, 5)
+position = Vector2(-21, 6)
 shape = SubResource("RectangleShape2D_2hdvb")
 
 [node name="Marker1" type="Marker2D" parent="." unique_id=319478568]
 unique_name_in_owner = true
-position = Vector2(-102, 46)
+position = Vector2(-118, 34)
 
 [node name="Marker2" type="Marker2D" parent="." unique_id=265271336]
 unique_name_in_owner = true
-position = Vector2(-28, 30)
+position = Vector2(-56, 34)
 
 [node name="cooldown" type="Timer" parent="." unique_id=169748228]
 unique_name_in_owner = true
@@ -118,5 +180,21 @@ one_shot = true
 autostart = true
 
 [node name="movement" type="AnimationPlayer" parent="." unique_id=198835775]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_2hdvb")
 autoplay = &"instantiate"
+
+[node name="shootgun" type="AudioStreamPlayer" parent="." unique_id=2082336572]
+unique_name_in_owner = true
+stream = ExtResource("4_xwt3i")
+volume_db = -8.0
+
+[node name="deathdelay" type="Timer" parent="." unique_id=841809265]
+unique_name_in_owner = true
+
+[node name="deathsound" type="AudioStreamPlayer" parent="." unique_id=1184875010]
+unique_name_in_owner = true
+stream = ExtResource("9_2tssf")
+volume_db = -8.0
+
+[connection signal="timeout" from="deathdelay" to="." method="_on_deathdelay_timeout"]

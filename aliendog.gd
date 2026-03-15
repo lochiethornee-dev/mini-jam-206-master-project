@@ -24,9 +24,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func take_damage():
-	print(health)
 	if health <= 0:
-		queue_free()
+		death()
 		Global.score += 50
 		
 
@@ -42,3 +41,19 @@ func _on_switch_timeout() -> void:
 		switch = false
 	elif switch == false:
 		switch = true
+
+
+
+
+func death():
+	speed = 115.5
+	yspeed = 0
+	%deathsound.play()
+	%deathdelay.start()
+	%AnimationPlayer.play("death")
+	%CollisionShape2D.set_deferred("disabled", true)
+	%collidebox.set_deferred("disabled", true)
+
+
+func _on_deathdelay_timeout() -> void:
+	queue_free()

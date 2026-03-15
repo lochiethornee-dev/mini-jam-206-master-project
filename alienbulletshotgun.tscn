@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dd0uc2ww7hylv"]
+
+[ext_resource type="Script" uid="uid://b1eo3eq8xg8ay" path="res://alienbulletshotgun.gd" id="1_7v7al"]
+[ext_resource type="Texture2D" uid="uid://djx1bwvdjvssd" path="res://ARTS!/enemys and obstavles/alien shooter/Alien Bullet.png" id="2_yfjmj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7rd0x"]
+radius = 4.0
+height = 16.0
+
+[node name="alienbulletshotgun" type="Node2D" unique_id=1501910044]
+script = ExtResource("1_7v7al")
+
+[node name="Timer" type="Timer" parent="." unique_id=577728998]
+
+[node name="straight1" type="Area2D" parent="." unique_id=231829226]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="straight1" unique_id=147395076]
+texture_filter = 1
+texture = ExtResource("2_yfjmj")
+
+[node name="straightshape" type="CollisionShape2D" parent="straight1" unique_id=1823660709]
+unique_name_in_owner = true
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7rd0x")
+
+[node name="up1" type="Area2D" parent="." unique_id=513783402]
+unique_name_in_owner = true
+rotation = 0.5235988
+
+[node name="Sprite2D" type="Sprite2D" parent="up1" unique_id=253002159]
+texture_filter = 1
+texture = ExtResource("2_yfjmj")
+
+[node name="upshape" type="CollisionShape2D" parent="up1" unique_id=649098931]
+unique_name_in_owner = true
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7rd0x")
+
+[node name="down1" type="Area2D" parent="." unique_id=1699493939]
+unique_name_in_owner = true
+rotation = -0.5235988
+
+[node name="Sprite2D" type="Sprite2D" parent="down1" unique_id=1424799675]
+texture_filter = 1
+texture = ExtResource("2_yfjmj")
+
+[node name="downshape" type="CollisionShape2D" parent="down1" unique_id=960707114]
+unique_name_in_owner = true
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7rd0x")
+
+[connection signal="body_entered" from="straight1" to="." method="_on_straight_1_body_entered"]
+[connection signal="body_entered" from="up1" to="." method="_on_up_1_body_entered"]
+[connection signal="body_entered" from="down1" to="." method="_on_down_1_body_entered"]
