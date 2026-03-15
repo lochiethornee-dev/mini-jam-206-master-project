@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c4dc0n6dbqv8v" path="res://ARTS!/intro background.png" id="1_ayt76"]
 [ext_resource type="Texture2D" uid="uid://bljexljq67pgl" path="res://ARTS!/intro text.png" id="2_7a8ye"]
 [ext_resource type="FontFile" uid="uid://dfonbs8pvc4yt" path="res://ARTS!/BroncoPersonalUse.ttf" id="3_y72e6"]
+[ext_resource type="Script" uid="uid://meqh7tbc8t7d" path="res://button.gd" id="4_u2rf6"]
 
 [sub_resource type="Animation" id="Animation_0a7ni"]
 length = 0.001
@@ -204,6 +205,20 @@ tracks/7/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Button")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(8.066667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u2rf6"]
 _data = {
@@ -225,12 +240,13 @@ offset_top = 383.0
 offset_right = 729.0
 offset_bottom = 483.0
 theme_override_colors/font_color = Color(1, 0.88235295, 0.65882355, 1)
-theme_override_colors/font_focus_color = Color(0.8862745, 0.42745098, 0.36078432, 1)
-theme_override_colors/font_hover_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.88235295, 0.65882355, 1)
+theme_override_colors/font_hover_color = Color(0.8862745, 0.42745098, 0.36078432, 1)
 theme_override_fonts/font = ExtResource("3_y72e6")
 theme_override_font_sizes/font_size = 40
 disabled = true
 text = "PLAY"
+script = ExtResource("4_u2rf6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1814936149]
 position = Vector2(576, 324)

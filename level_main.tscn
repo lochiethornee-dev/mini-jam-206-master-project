@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bjw8rmvbwmutk" path="res://ARTS!/background parralaxes/Ground.png" id="3_l6pjf"]
 [ext_resource type="Texture2D" uid="uid://k2v6jcxxdp37" path="res://ARTS!/sign.png" id="4_17q82"]
 [ext_resource type="FontFile" uid="uid://dfonbs8pvc4yt" path="res://ARTS!/BroncoPersonalUse.ttf" id="5_k2n5e"]
-[ext_resource type="Texture2D" uid="uid://dr30k76o0lfxi" path="res://ARTS!/COWHORSE AND HOSE BOY/Full Heart.png" id="5_t50rk"]
+[ext_resource type="Texture2D" uid="uid://5seclk7uswxh" path="res://ARTS!/COWHORSE AND HOSE BOY/Full Heart.png" id="5_t50rk"]
 [ext_resource type="Script" uid="uid://5kj4m0lgmrwq" path="res://enemy_manager.gd" id="6_cu163"]
 [ext_resource type="PackedScene" uid="uid://doqpjx3m8cew5" path="res://cactusobstacle.tscn" id="7_6sf5y"]
 [ext_resource type="Texture2D" uid="uid://cdi3qumitklnt" path="res://ARTS!/background parralaxes/Grass.png" id="11_dhmjr"]
@@ -762,6 +762,7 @@ text = "SCORE: 0"
 [node name="heart1" type="Sprite2D" parent="signs and UI" unique_id=1421477017]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
+z_index = 10
 position = Vector2(135.85, 79.05)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_t50rk")
@@ -769,6 +770,7 @@ texture = ExtResource("5_t50rk")
 [node name="heart2" type="Sprite2D" parent="signs and UI" unique_id=1302436955]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
+z_index = 10
 position = Vector2(204.85, 79.05)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_t50rk")
@@ -776,6 +778,7 @@ texture = ExtResource("5_t50rk")
 [node name="heart3" type="Sprite2D" parent="signs and UI" unique_id=1417309888]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
+z_index = 10
 position = Vector2(273.85, 79.05)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_t50rk")
@@ -887,11 +890,13 @@ autostart = true
 
 [node name="intromusic" type="AudioStreamPlayer" parent="." unique_id=796991828]
 stream = ExtResource("14_2lk7g")
+volume_db = -2.0
 autoplay = true
 
 [node name="main music" type="AudioStreamPlayer" parent="." unique_id=1845648929]
 unique_name_in_owner = true
 stream = ExtResource("14_1vveb")
+volume_db = -2.0
 
 [connection signal="timeout" from="enemy manager/alienshooter1timer" to="enemy manager" method="_on_alienshooter_1_timer_timeout"]
 [connection signal="timeout" from="enemy manager/aliendoggytimer" to="enemy manager" method="_on_aliendoggytimer_timeout"]

@@ -1,5 +1,6 @@
 extends Area2D
 
+var canbepickedup = true
 var speed = 115.5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +15,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("heal") and Global.healthmanager < 3:
+	if body.has_method("heal") and Global.healthmanager < 3 and canbepickedup:
 		body.heal(1)
 		pickup()
 		
@@ -23,7 +24,7 @@ func pickup():
 	$sound.play()
 	$Sprite2D.visible = false
 	$CollisionShape2D.disabled = true
-
+	canbepickedup = false
 
 func _on_timer_timeout() -> void:
 	queue_free()

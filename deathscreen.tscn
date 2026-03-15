@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cmxp8mox5wj3y" path="res://deathscreen.gd" id="1_0ajwu"]
 [ext_resource type="Texture2D" uid="uid://c4dc0n6dbqv8v" path="res://ARTS!/intro background.png" id="2_tnnxq"]
 [ext_resource type="FontFile" uid="uid://dfonbs8pvc4yt" path="res://ARTS!/BroncoPersonalUse.ttf" id="3_elkug"]
+[ext_resource type="Script" uid="uid://meqh7tbc8t7d" path="res://button.gd" id="4_elkug"]
 [ext_resource type="AudioStream" uid="uid://ikohxk7w8u83" path="res://sounds/death sting.wav" id="4_tnnxq"]
 
 [node name="deathscreen" type="Node2D" unique_id=702363754]
@@ -58,9 +59,11 @@ theme_override_colors/font_hover_color = Color(0.8862745, 0.42745098, 0.36078432
 theme_override_fonts/font = ExtResource("3_elkug")
 theme_override_font_sizes/font_size = 40
 text = "PLAY again?"
+script = ExtResource("4_elkug")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=363797220]
 stream = ExtResource("4_tnnxq")
+volume_db = -2.0
 autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
